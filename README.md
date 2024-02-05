@@ -1,69 +1,96 @@
 # Amazon Product Reviews Analysis
 
 ## Data Source
-- [Amazon Product Reviews Dataset](https://www.kaggle.com/datasets/yasserh/amazon-product-reviews-dataset)
-- Folder: Amazon
+[Amazon Product Reviews Dataset](https://www.kaggle.com/datasets/yasserh/amazon-product-reviews-dataset)
+
+## Folder
+Amazon
 
 ## Description
-The dataset consists of samples from Amazon Ratings for select products. The reviews are randomly picked, and the corpus has nearly 1.6k reviews from different customers. The goal is to understand the main topics of these reviews for easier classification.
+The dataset contains samples from Amazon Ratings for select products. The reviews are randomly selected, comprising nearly 1.6k reviews from different customers. The goal is to understand the main topics of these reviews for easier search and classification.
 
-### Tasks
-1. **Data Cleanup, Analysis, Visualization, and Modeling**
-   - Understand the Dataset and perform necessary cleanup.
-   - Add additional algorithms to go in-depth on the positivity of each review.
-   - Build a strong Topic Modelling Algorithm to classify topics beyond what is provided in each review's title.
-   - Create a regression model to predict product ratings based on the length of reviews.
+### Objectives
+1. **Data Cleanup and Exploration**
+   - Understand the dataset and perform necessary cleanup.
+   - Select relevant columns for analysis.
 
-2. **Libraries and Tools Used**
-   - Pandas (data cleaning and manipulation)
-   - NLTK & spaCy (NLP)
-   - scikit-learn (regression)
-   - langdetect & googletrans (detecting non-English languages and translating to English)
-   - Gensim (topic modeling)
-   - pyLDAvis & matplotlib (visualizing topic model)
-   - warnings (prevent certain warnings from showing up and display personal information on the user's device after cell execution)
+2. **Analysis and Visualization**
+   - Explore the dataset using Pandas for cleaning and manipulation.
+   - Utilize NLTK, spaCy, and sklearn for natural language processing (NLP) and sentiment analysis.
+   - Implement a regression model to predict the helpfulness of reviews based on their length.
 
-## Usage Instructions
-### Possible Errors:
-1. **Missing Libraries:** Ensure all Python libraries are installed on your machine or within your directory.
-2. **Cell Edits:** Avoid making problematic edits to the cells. This notebook is designed to run seamlessly with no manual edits.
-3. **Python Kernel:** Ensure you are running a Python kernel or use an up-to-date version.
-4. **Library Downloads:** Some libraries or necessary downloads may be required for the operation of certain parts or the entirety of certain libraries. For example, vader_lexicon is required to be downloaded for Sentiment Analysis (later in the notebook).
+3. **Topic Modeling**
+   - Use Gensim for topic modeling to identify the main topics of reviews.
+   - Visualize topic clusters using pyLDAvis.
 
-### Execution
-1. Execute the following initial setup code:
-    ```python
-    import pandas as pd
-    from pandas.errors import SettingWithCopyWarning
-    from sklearn.linear_model import LinearRegression
-    import nltk
-    import warnings
+4. **Additional Algorithms**
+   - Implement algorithms to gauge the positivity of each review.
+   - Create a classification model to classify the level of positivity.
 
-    # warnings.filterwarnings("ignore")  # ignore all overall
-    warnings.filterwarnings("ignore", category=SettingWithCopyWarning)  # ignore a warning later on for copying over on a dataframe.
-    warnings.filterwarnings("ignore", category=FutureWarning)
+5. **Tools Used**
+   - Pandas for data cleaning and manipulation.
+   - NLTK & spaCy for NLP.
+   - sklearn for regression.
+   - Gensim for topic modeling.
+   - pyLDAvis & matplotlib for visualizing topic models.
+   - langdetect & googletrans for detecting non-English languages and translation.
+   - warnings for managing warnings during execution.
 
-    df = pd.read_csv('product_reviews.csv')
-    df.head()
-    ```
+### Instructions for Running the Notebook
+- Ensure all required Python libraries are installed.
+- Make sure to run the notebook sequentially without making any edits.
+- Some cells may require additional downloads (e.g., NLTK resources) during execution.
+- Check for errors related to missing libraries or dependencies.
 
-2. Continue executing subsequent cells to perform data cleaning, analysis, visualization, and modeling.
+### Columns in the Dataset
+- **id:** Unique identifier for each product.
+- **asins:** ASIN (Amazon Standard Identification Number) associated with the product.
+- **brand:** Brand of the product.
+- **categories:** Categories to which the product belongs.
+- **colors:** Colors available for the product.
+- **dateAdded:** Date when the product was added.
+- **dateUpdated:** Date when the product information was last updated.
+- **dimension:** Dimensions of the product.
+- **ean:** EAN (European Article Number) associated with the product.
+- **keys:** Unique keys associated with the product.
+- **manufacturer:** Manufacturer of the product.
+- **manufacturerNumber:** Manufacturer number for the product.
+- **name:** Name of the product.
+- **prices:** Prices associated with the product, including currency and date information.
+- **reviews.date:** Date when the review was posted.
+- **reviews.doRecommend:** Indicates whether the reviewer recommends the product.
+- **reviews.numHelpful:** Number of users who found the review helpful.
+- **reviews.rating:** Rating given by the reviewer.
+- **reviews.sourceURLs:** URLs to the source of the reviews.
+- **reviews.text:** Text content of the review.
+- **reviews.title:** Title of the review.
+- **reviews.userCity:** City of the reviewer.
+- **reviews.userProvince:** Province of the reviewer.
+- **reviews.username:** Username of the reviewer.
+- **sizes:** Sizes available for the product.
+- **upc:** UPC (Universal Product Code) associated with the product.
+- **weight:** Weight of the product.
 
-### Relevant Columns
-- `id`, `asins`, `brand`, `categories`, `colors`, `manufacturer`, `name`, `prices`, `reviews.date`, `reviews.doRecommend`, `reviews.numHelpful`, `reviews.rating`, `reviews.text`, `reviews.title`, `sizes`, `weight`.
+### Data Cleaning
+1. Selected relevant columns for analysis.
+2. Restructured the prices column.
+3. Converted the reviews.date column to datetime format.
 
-3. After cleaning the data, sentiment analysis, and creating positivity scores, the notebook proceeds to topic modeling using NLP techniques.
+### NLP and Sentiment Analysis
+1. Used NLTK and spaCy for natural language processing.
+2. Employed sentiment intensity analysis to determine the positivity of each review.
+3. Classified reviews into different positivity levels.
 
-4. **Visualization of Main Topics**
-   - The notebook utilizes pyLDAvis to visualize the clusters of topics obtained from the reviews.
+### Topic Modeling
+1. Tokenized and lemmatized the text for better topic modeling.
+2. Applied bigrams and trigrams to the data.
+3. Created a bag-of-words representation and developed a dictionary.
+4. Implemented LDA (Latent Dirichlet Allocation) for topic modeling.
+5. Visualized the topics using pyLDAvis.
 
-5. **Main Topics Identified**
-   - 1: Device and Display Experience
-   - 2: Audio and Speaker Performance
-   - 3: Headphones and Sound Quality
-   - 4: Content Consumption and App/Software Experience
-   - 5: General Product Review and Comparison
-   - 6: TV Box and Streaming Experience
+### Regression Model
+1. Explored the relationship between review length and helpfulness.
+2. Implemented a polynomial regression model for prediction.
 
-Feel free to explore and adapt the notebook for your specific needs.
-
+### Conclusion
+The notebook provides comprehensive insights into the Amazon product reviews dataset, covering data cleaning, sentiment analysis, topic modeling, and regression analysis. Users are encouraged to run the notebook sequentially and ensure all dependencies are installed for a seamless execution.
